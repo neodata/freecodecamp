@@ -110,7 +110,7 @@ echo -e "\nList of teams who played in the 2014 'Eighth-Final' round:"
 echo "$($PSQL "SELECT DISTINCT t.name FROM teams t JOIN games g ON t.team_id = g.winner_id OR t.team_id = g.opponent_id WHERE g.year = 2014 AND g.round = 'Eighth-Final'")"
 
 echo -e "\nList of unique winning team names in the whole data set:"
-echo "$($PSQL "SELECT DISTINCT name FROM teams WHERE team_id IN (SELECT winner_id FROM games)")"
+echo "$($PSQL "SELECT DISTINCT name FROM teams WHERE team_id IN (SELECT winner_id FROM games) ORDER BY name")"
 
 echo -e "\nYear and team name of all the champions:"
 echo "$($PSQL "SELECT g.year, t.name FROM games g INNER JOIN teams t ON g.winner_id = t.team_id WHERE round = 'Final' ORDER BY g.year")"
